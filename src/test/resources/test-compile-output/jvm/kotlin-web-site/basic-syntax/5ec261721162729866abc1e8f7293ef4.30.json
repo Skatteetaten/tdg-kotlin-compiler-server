@@ -1,0 +1,1 @@
+{"exception":null,"text":"<outStream>42\nWrong number format in arg1: 'a'\nWrong number format in arg2: 'b'\n</outStream>","jvmByteCode":null,"errors":{"File.kt":[]}}

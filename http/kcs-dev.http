@@ -1,0 +1,8 @@
+###
+# @name Kall mot Kotlin-compiler-server
+POST http://localhost:8080/api/api/2.2.10/compiler/complete?line=5&ch=4
+Content-Type: application/json
+
+{"args":"","files":[{"name":"File.kt","text":"import no.skatteetaten.rst.tdss.person.person\nimport no.skatteetaten.rst.tdss.enhet.enhet\n\nfun main() {\nperson {\n  saldo\n}\n}","publicId":""}],"confType":"java"}
+
+###

@@ -1,0 +1,14 @@
+{
+  "docker": {
+    "maintainer": "Team RST",
+    "labels": {
+      "io.k8s.description": "Kotlin Playground Server",
+      "io.openshift.tags": "openshift,springboot,kotlin"
+    }
+  },
+  "java": {
+    "mainClass": "com.compiler.server.CompilerApplicationKt",
+    "jvmOpts": "-Dspring.profiles.active=openshift",
+    "applicationArgs": "--logging.config=${LOGBACK_FILE}"
+  }
+}

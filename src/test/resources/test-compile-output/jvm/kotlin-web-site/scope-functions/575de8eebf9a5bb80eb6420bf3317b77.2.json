@@ -1,0 +1,1 @@
+{"exception":null,"text":"<outStream>Person(name=Alice, age=20, city=Amsterdam)\nPerson(name=Alice, age=21, city=London)\n</outStream>","jvmByteCode":null,"errors":{"File.kt":[]}}

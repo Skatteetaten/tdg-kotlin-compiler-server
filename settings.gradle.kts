@@ -1,0 +1,14 @@
+rootProject.name = "tdg-kotlin-compiler-server"
+
+pluginManagement {
+    includeBuild("build-settings-logic")
+}
+plugins {
+    id("kotlin-compiler-server-version-catalog")
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+include(":executors")
+include(":indexation")
+include(":common")
+include(":dependencies")

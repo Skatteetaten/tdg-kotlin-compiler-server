@@ -1,0 +1,70 @@
+package com.compiler.server.controllers
+
+import java.util.Date
+import com.compiler.server.model.*
+import com.compiler.server.model.bean.VersionInfo
+import com.compiler.server.service.KotlinProjectExecutor
+import org.springframework.web.bind.annotation.*
+import model.Completion
+
+@RestController
+@RequestMapping(value = ["/api/compiler", "/api/**/compiler"])
+class CompilerRestController(private val kotlinProjectExecutor: KotlinProjectExecutor) {
+  @PostMapping("/run")
+  fun executeKotlinProjectEndpoint(
+    @RequestBody project: Project,
+    @RequestParam(defaultValue = "false") addByteCode: Boolean,
+  ): ExecutionResult {
+    return kotlinProjectExecutor.run(project, addByteCode)
+  }
+
+  @PostMapping("/test")
+  fun testKotlinProjectEndpoint(
+    @RequestBody project: Project,
+    @RequestParam(defaultValue = "false") addByteCode: Boolean,
+  ): ExecutionResult {
+    return kotlinProjectExecutor.test(project, addByteCode)
+  }
+
+  @PostMapping("/translate")
+  fun translateKotlinProjectEndpoint(
+    @RequestBody project: Project,
+    @RequestParam(defaultValue = "js") compiler: String,
+    @RequestParam(defaultValue = "false") debugInfo: Boolean
+  ): TranslationResultWithJsCode {
+    return when (KotlinTranslatableCompiler.valueOf(compiler.uppercase().replace("-", "_"))) {
+      KotlinTranslatableCompiler.JS -> kotlinProjectExecutor.convertToJsIr(project)
+      KotlinTranslatableCompiler.WASM -> kotlinProjectExecutor.convertToWasm(project, debugInfo)
+      KotlinTranslatableCompiler.COMPOSE_WASM -> kotlinProjectExecutor.convertToWasm(project, debugInfo)
+    }
+  }
+
+  @PostMapping("/complete")
+  fun getKotlinCompleteEndpoint(
+     @RequestBody project: Project,
+     @RequestParam line: Int,
+     @RequestParam ch: Int
+  ): List<Completion> {
+     val complete = kotlinProjectExecutor.complete(project, line, ch)
+     return complete
+  }
+
+  @PostMapping("/highlight")
+  fun highlightEndpoint(@RequestBody project: Project): CompilerDiagnostics {
+     val highlight = kotlinProjectExecutor.highlight(project)
+     return highlight
+  }
+
+}
+
+@RestController
+class VersionRestController(private val kotlinProjectExecutor: KotlinProjectExecutor) {
+  @GetMapping("/versions")
+  fun getKotlinVersionEndpoint(): List<VersionInfo> = listOf(kotlinProjectExecutor.getVersion())
+}
+
+@RestController
+class VersionRestController2(private val kotlinProjectExecutor: KotlinProjectExecutor) {
+    @GetMapping("/api/versions")
+    fun getKotlinVersionEndpoint(): List<VersionInfo> = listOf(kotlinProjectExecutor.getVersion())
+}

@@ -1,0 +1,50 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+src/main/resources/application.properties
+
+# compile artifacts
+.kotlin/
+1.9.*/
+*.log
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+tdss*.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+logs/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Generated JARs and libs
+/2.2.10*
+
+### indexes*.json
+indexes.json
+indexesComposeWasm.json
+indexesJs.json
+indexesWasm.json
+
