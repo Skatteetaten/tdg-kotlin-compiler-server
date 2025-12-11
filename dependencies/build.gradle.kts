@@ -2,6 +2,11 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.targets.js.KotlinJsCompilerAttribute
 import org.jetbrains.kotlin.gradle.targets.js.KotlinWasmTargetAttribute
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 plugins {
     id("base-kotlin-jvm-conventions")
 }

@@ -1,3 +1,8 @@
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
 plugins {
   id("base-kotlin-jvm-conventions")
 }

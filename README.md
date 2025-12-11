@@ -58,7 +58,7 @@ Legg til egen logikk i [CompletionProvider.kt](src/main/kotlin/com/compiler/serv
 ### For kjøring lokalt
 
 Hvis man ikke har et remote repository som distribuerer *tdss*,
-så må *tdg-backend* må bygges først, slik at det lages et lokalt snapshot av *tdss*.
+så må *tdg-backend* bygges først, slik at det lages et lokalt snapshot av *tdss*.
 
 I [gradle.properties](gradle.properties) må man sette `tdssVersjon=1.0-SNAPSHOT`.
 
@@ -68,9 +68,9 @@ I [gradle.properties](gradle.properties) må man sette `tdssVersjon=1.0-SNAPSHOT
 [**kcs-dev.http**](http/kcs-dev.http) kan brukes til å teste ut *kotlin-compiler-server* ved hjelp av *IntelliJ* sin HTTP-syntaks.
 
 
-# _______________________________________________
+# ____________________________________________
 # README fra Jetbrains sin [kotlin-compiler-server](https://github.com/JetBrains/kotlin-compiler-server)
-# _______________________________________________
+# ____________________________________________
 
 # Kotlin compiler server
 

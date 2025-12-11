@@ -4,6 +4,11 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 val tdssVersjon = properties["tdssVersjon"] as String
 
 val policy: String by System.getProperties()
