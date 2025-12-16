@@ -12,9 +12,9 @@ Testdataene som genereres er syntetiske, og er basert på test-personer og -enhe
 
 Denne aktuelle løsningen som er publisert på Github er en forenklet og nedkortet versjon av den Testdatageneratoren som
 brukes internt i Skatteetaten, og denne løsningen er derfor ment å brukes kun som et utgangspunkt og som eksempelkode
-for andre som ønsker å lage og videreutvikle en tilsvarende løsning innenfor sitt domene. Denne forenklede versjonen
-gir mulighet for å generere dokumenter kun av typen "SaldoRente", men koden kan utvides til å generere en rekke andre
-dokumenttyper.
+for andre som ønsker å lage og videreutvikle en tilsvarende løsning innenfor sitt domene. Denne forenklede versjonen gir 
+mulighet for å generere dokumenter kun av typen "SaldoRente", som er innrapportering av innskudd, utlån og renter fra bankene, 
+men koden kan utvides til å generere en rekke andre dokumenttyper.
 
 Testdatageneratoren består av tre komponenter:
 
@@ -43,6 +43,15 @@ som kan komme fra frontend eller HTTP-klienter. *korrelasjonsId* brukes for å h
 
 ![Testdata flyt](docs/flytdiagram.png)
 
+
+## tdg-kotlin-compiler-server
+
+*tdg-kotlin-compiler-server* er en tilpasset fork av JetBrains sin Kotlin compiler server, brukt som “språkserver” for TDSS i Testdatageneratoren.  
+Den kompilerer og evaluerer Kotlin-kode som sendes inn fra *tdg-frontend*, og gir tilbake feilmeldinger, highlighting og autocomplete-forslag mens brukeren skriver spesifikasjonen.
+
+I denne varianten er serveren utvidet med støtte for TDSS ved å legge til `tdss` biblioteket som avhengighet og ved å tilpasse completion-logikken.
+
+
 ## Hvordan TDSS er lagt til i prosjektet
 
 Legg til i [dependencies/build.gradle.kts](dependencies/build.gradle.kts):
@@ -61,6 +70,22 @@ Hvis man ikke har et remote repository som distribuerer *tdss*,
 så må *tdg-backend* bygges først, slik at det lages et lokalt snapshot av *tdss*.
 
 I [gradle.properties](gradle.properties) må man sette `tdssVersjon=1.0-SNAPSHOT`.
+
+## Oppstart
+
+Prosjektet må bygges med _**Java 17**_.
+
+1) Bygg prosjektet.
+
+```shell script
+$ ./gradlew build -x test 
+```
+
+2) Start applikasjonen.
+
+```shell script
+$ ./gradlew bootRun
+```
 
 
 ## Testing med IntelliJ HTTP Syntaks
